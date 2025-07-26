@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Door Wedge Stopper - Furniture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-black: #000000;
+            --dark-gray: #4a4a4a;
+            --light-gray: #9a9a9a;
+            --white: #ffffff;
+            --silver: #c0c0c0;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark-gray);
+            background-color: var(--white);
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--primary-black);
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://cdn.hotishop.com/image/8bd9bbfac0047a8a7285110c2e54fd4ff464a603-600.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(to right, #4a4a4a, #000000);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .testimonial-card {
+            transition: all 0.3s ease;
+        }
+        
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+        
+        .social-proof-popup {
+            animation: slideInRight 0.5s ease-out;
+        }
+        
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .star-rating {
+            color: #ffd700;
+        }
+        
+        .gallery-img {
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .price-original {
+            text-decoration: line-through;
+            color: var(--light-gray);
+        }
+        
+        .price-discount {
+            color: #e53e3e;
+            font-weight: 700;
+        }
+        
+        .counter-badge {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border-radius: 20px;
+            padding: 2px 10px;
+            font-size: 0.8rem;
+        }
+        
+        .sticky-cta {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            flex-shrink: 0;
+        }
+        
+        .carousel-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+        }
+        
+        .indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+        }
+        
+        .indicator.active {
+            background: white;
+        }
+        
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .carousel-btn.prev {
+            left: 10px;
+        }
+        
+        .carousel-btn.next {
+            right: 10px;
+        }
+        
+        .highlight {
+            background-color: rgba(192, 192, 192, 0.2);
+            padding: 0 4px;
+            border-radius: 3px;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-gradient {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+            
+            .sticky-cta {
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Social Proof Popup -->
+    <div id="socialProofPopup" class="social-proof-popup fixed top-5 right-5 bg-white shadow-xl rounded-lg p-4 border-l-4 border-gray-800 hidden z-50 max-w-xs">
+        <div class="flex items-start">
+            <img src="https://teknogram.id/wp-content/uploads/2022/11/pp-wa.jpg" alt="Customer" class="w-10 h-10 rounded-full mr-3">
+            <div>
+                <p id="socialProofText" class="text-sm font-medium text-gray-900"></p>
+                <p class="text-xs text-gray-500 mt-1">Baru saja memesan</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close absolute top-5 right-5 text-white text-3xl cursor-pointer">&times;</span>
+        <img id="lightboxImage" class="lightbox-content max-h-[90vh] max-w-[90vw] object-contain" src="" alt="Lightbox Image">
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex justify-center mb-4">
+                <span class="counter-badge flex items-center">
+                    <i class="fas fa-users mr-2"></i> 124 pengunjung saat ini
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Door Wedge Stopper</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">Cegah pintu membanting atau tertutup tiba-tiba! Desain anti-selip yang kuat menjaga pintu tetap terbuka dengan aman.</p>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 mb-8">
+                <div class="flex items-center bg-black bg-opacity-30 px-4 py-2 rounded-full">
+                    <i class="fas fa-star text-yellow-400 mr-2"></i>
+                    <span>Direkomendasikan oleh 500+ orang di Facebook</span>
+                </div>
+                <div class="flex items-center bg-black bg-opacity-30 px-4 py-2 rounded-full">
+                    <i class="fas fa-truck mr-2"></i>
+                    <span>Gratis Ongkos Kirim untuk paket 2</span>
+                </div>
+            </div>
+            
+            <button class="btn-primary text-white font-bold py-4 px-8 rounded-full text-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105">
+                Pesan Sekarang & Dapatkan harga promo
+            </button>
+            
+            <div class="mt-8 flex flex-wrap justify-center gap-4">
+                <div class="flex items-center">
+                    <i class="fas fa-shield-alt text-green-400 mr-2"></i>
+                    <span>Garansi 7 Hari</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-undo text-blue-400 mr-2"></i>
+                    <span>Pengembalian Mudah</span>
+                </div>
+                <div class="flex items-center">
+                    <i class="fas fa-lock text-purple-400 mr-2"></i>
+                    <span>Pembayaran Aman</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Showcase -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Tampilan Produk</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Lihat Door Wedge Stopper dari berbagai sudut dan kondisi penggunaan</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="gallery-container mb-8">
+                        <img id="mainImage" src="https://cdn.hotishop.com/image/8bd9bbfac0047a8a7285110c2e54fd4ff464a603-600.jpeg" alt="Door Wedge Stopper" class="w-full rounded-xl shadow-lg cursor-pointer gallery-img">
+                    </div>
+                    
+                    <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
+                        <img src="https://cdn.hotishop.com/image/8bd9bbfac0047a8a7285110c2e54fd4ff464a603-600.jpeg" alt="Gallery 1" class="rounded-lg cursor-pointer gallery-thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://cdn.hotishop.com/image/225471a1fec5b1211f0855979442077542ba14c8-600.jpeg" alt="Gallery 2" class="rounded-lg cursor-pointer gallery-thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://ae01.alicdn.com/kf/Sdc3c3a21a9a24becb3d7fa70b6ad4b087.jpg?width=1500&height=1500&hash=3000" alt="Gallery 3" class="rounded-lg cursor-pointer gallery-thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://ae01.alicdn.com/kf/S7c50cf3521b841049aed638c3ed86d73s.jpg?width=1500&height=1500&hash=3000" alt="Gallery 4" class="rounded-lg cursor-pointer gallery-thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://ae01.alicdn.com/kf/S0fe51c5641504829b363ed4b41f5cf3eX.jpg?width=1457&height=1457&hash=2914" alt="Gallery 5" class="rounded-lg cursor-pointer gallery-thumbnail" onclick="changeMainImage(this.src)">
+                        <img src="https://ae01.alicdn.com/kf/Sbec9f076b37c4d5082f92c4ebd717c31h.jpg?width=1500&height=1500&hash=3000" alt="Gallery 6" class="rounded-lg cursor-pointer gallery-thumbnail" onclick="changeMainImage(this.src)">
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">Door Wedge Stopper</h3>
+                    <div class="flex items-center mb-4">
+                        <div class="star-rating flex mr-2">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="text-gray-600">(4.9 dari 748 ulasan)</span>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-6">Stop pintu tertutup tiba-tiba! Door Wedge Stopper hadir dengan desain anti-selip yang kuat, menjaga pintu tetap terbuka dengan aman. Praktis, ringkas, dan cocok untuk semua jenis lantai!</p>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-3">Harga Spesial Hari Ini:</h4>
+                        <div class="flex items-center mb-2">
+                            <span class="price-original text-lg mr-3">Rp 350.000</span>
+                            <span class="price-discount text-2xl">Rp 260.000</span>
+                            <span class="ml-3 px-2 py-1 bg-red-100 text-red-800 rounded text-sm font-bold">10% OFF</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <h4 class="font-bold mb-3">Paket Hemat:</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="border rounded-lg p-4">
+                                <h5 class="font-bold mb-2">Paket 1</h5>
+                                <p class="text-sm mb-2">Beli 1 Gratis 1</p>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="price-original text-sm">Rp 175.000</span>
+                                        <div class="price-discount font-bold">Rp 165.000</div>
+                                    </div>
+                                    <span class="text-green-600 font-bold">5% OFF</span>
+                                </div>
+                            </div>
+                            <div class="border-2 border-gray-800 rounded-lg p-4 relative">
+                                <span class="absolute -top-3 left-4 bg-gray-800 text-white text-xs px-2 py-1 rounded">Paling Laris</span>
+                                <h5 class="font-bold mb-2">Paket 2</h5>
+                                <p class="text-sm mb-2">Beli 2 Gratis 2 + Free Ongkir</p>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="price-original text-sm">Rp 350.000</span>
+                                        <div class="price-discount font-bold">Rp 260.000</div>
+                                    </div>
+                                    <span class="text-green-600 font-bold">25% OFF</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-primary w-full text-white font-bold py-4 px-8 rounded-lg text-lg">
+                        Pesan Sekarang - Hemat Sampai 25%
+                    </button>
+                    
+                    <div class="mt-4 text-center text-sm text-gray-600">
+                        <i class="fas fa-shield-alt mr-1"></i> Pembayaran Bank Transfer Langsung Dikirim Hari Ini
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Demo -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Lihat Video Penggunaan</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Lihat bagaimana Door Wedge Stopper bekerja dalam kehidupan nyata</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pb-[56.25%] h-0 rounded-xl overflow-hidden shadow-xl">
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls>
+                        <source src="https://video.aliexpress-media.com/play/u/ae_sg_item/2211341970608/p/1/e/6/t/10301/5000240038939.mp4?from=chrome" type="video/mp4">
+                        Browser Anda tidak mendukung tag video.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features & Benefits -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Mengapa Memilih Door Wedge Stopper?</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Solusi praktis dan efektif untuk mencegah pintu tertutup mendadak</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-lock text-3xl text-gray-800"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Anti-Selip</h3>
+                    <p class="text-gray-600">Desain khusus yang mencegah pergeseran saat digunakan</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-sync-alt text-3xl text-gray-800"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Universal</h3>
+                    <p class="text-gray-600">Cocok untuk semua jenis lantai dan jenis pintu</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-ruler-combined text-3xl text-gray-800"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Ringkas</h3>
+                    <p class="text-gray-600">Ukuran kompak mudah disimpan dan dibawa kemana saja</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-3xl text-gray-800"></i>
+                    </div>
+                    <h3 class="font-bold text-xl mb-2">Ramah Lingkungan</h3>
+                    <p class="text-gray-600">Terbuat dari bahan berkualitas tinggi yang tahan lama</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Apa Kata Pelanggan Kami</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Ulasan nyata dari pengguna Door Wedge Stopper</p>
+            </div>
+            
+            <div class="carousel-container relative max-w-6xl mx-auto">
+                <div class="carousel-track">
+                    <!-- Testimonial 1 -->
+                    <div class="carousel-slide p-4">
+                        <div class="testimonial-card bg-white rounded-xl shadow-md p-6">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pinimg.com/1200x/17/06/7a/17067ad9e777820a48892ba964c9725a.jpg" alt="priyocahyo" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-bold">priyocahyo</h4>
+                                    <div class="star-rating flex">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-4">Produk <span class="highlight">Memuaskan</span>, Harga jg <span class="highlight">murmer banget</span> Pengiriman <span class="highlight">super cepat</span>,, cuma 1 hari 👍👍👍</p>
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/A43308ea79784462caa83378813df9c5d4.jpg_.webp" alt="Review Media" class="w-20 h-20 rounded-lg cursor-pointer testimonial-media">
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="carousel-slide p-4">
+                        <div class="testimonial-card bg-white rounded-xl shadow-md p-6">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pinimg.com/1200x/cf/04/e6/cf04e65410b5e0fcf2901b2303f6dc72.jpg" alt="divazelv" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-bold">divazelv</h4>
+                                    <div class="star-rating flex">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-4"><span class="highlight">Packing super aman</span> dan <span class="highlight">rapi</span>, brg jg <span class="highlight">diterima dgn baik</span>. Thanks!</p>
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/Sb643b2faa09a4d21be6858aa7ef543c0W.jpg_.webp" alt="Review Media" class="w-20 h-20 rounded-lg cursor-pointer testimonial-media">
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="carousel-slide p-4">
+                        <div class="testimonial-card bg-white rounded-xl shadow-md p-6">
+                            <div class="flex items-center mb-4">
+                                <img src="https://i.pinimg.com/736x/cf/1d/20/cf1d20dc52c9891fd7a3684b22bee926.jpg" alt="deddy_arnast" class="w-10 h-10 rounded-full mr-3">
+                                <div>
+                                    <h4 class="font-bold">deddy_arnast</h4>
+                                    <div class="star-rating flex">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-4">Mantappp, <span class="highlight">Udah langganan</span> di toko ini</p>
+                            <img src="https://ae-pic-a1.aliexpress-media.com/kf/S73a8567d80214452aea7d22b4462a4bbp.jpg_.webp" alt="Review Media" class="w-20 h-20 rounded-lg cursor-pointer testimonial-media">
+                        </div>
+                    </div>
+                </div>
+                
+                <button class="carousel-btn prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                
+                <div class="carousel-indicators">
+                    <div class="indicator active"></div>
+                    <div class="indicator"></div>
+                    <div class="indicator"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Form -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Pesan Sekarang</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Dapatkan penawaran spesial hari ini dengan memesan sekarang</p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto glassmorphism p-8 rounded-2xl">
+                <div class="ooef">
+                    <form class="orderonline-embed-form" data-username="vera" data-product-slug="door-wedge-stopper" data-product-id="68852bd00211d664ca0cdd40" id="oo-embed-form-door-wedge-stopper-4369" data-origin="orderonline">
+                        <div class="ooef-loader">
+                            <style>
+                                .ooef-loader{visibility: hidden;opacity: 0;position: absolute;left: 0;right: 0;top: 0;bottom: 0;display: flex;justify-content: center;align-items: center;flex-direction: column;animation: ooLoadingIn 10s ease;-webkit-animation: ooLoadingIn 10s ease;animation-fill-mode: forwards;overflow: hidden}
+                                @keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}
+                                @-webkit-keyframes ooLoadingIn{0%{visibility: hidden;opacity: 0}20%{visibility: visible;opacity: 0}100%{visibility: visible;opacity: 1}}
+                                .ooef-loader>div,.ooef-loader>div:after{border-radius: 50%;width: 2.5rem;height: 2.5rem}
+                                .ooef-loader>div{font-size: 10px;position: relative;text-indent: -9999em;border: .25rem solid #f5f5f5;border-left: .25rem solid #55c4cf;-webkit-transform: translateZ(0);-ms-transform: translateZ(0);transform: translateZ(0);-webkit-animation: ooLoading 1.1s infinite linear;animation: ooLoading 1.1s infinite linear}
+                                .ooef-loader.error>div{border-left: .25rem solid #ff4500;animation-duration: 5s}
+                                @-webkit-keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}
+                                @keyframes ooLoading{0%{-webkit-transform: rotate(0);transform: rotate(0)}100%{-webkit-transform: rotate(360deg);transform: rotate(360deg)}}
+                            </style>
+                            <div aria-live="polite" role="status">
+                                <div>Loading...</div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Furniture</h3>
+                    <p class="text-gray-400">Solusi furnitur berkualitas tinggi untuk rumah Anda.</p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Layanan</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-white">Bantuan</a></li>
+                        <li><a href="#" class="hover:text-white">Pengembalian</a></li>
+                        <li><a href="#" class="hover:text-white">Garansi</a></li>
+                        <li><a href="#" class="hover:text-white">Pembayaran</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Tentang Kami</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><a href="#" class="hover:text-white">Tentang</a></li>
+                        <li><a href="#" class="hover:text-white">Kontak</a></li>
+                        <li><a href="#" class="hover:text-white">Karir</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Hubungi Kami</h4>
+                    <ul class="text-gray-400 space-y-2">
+                        <li><i class="fas fa-envelope mr-2"></i> support@furniture.com</li>
+                        <li><i class="fas fa-phone mr-2"></i> +62 8953 8406 0107</li>
+                        <li><i class="fas fa-map-marker-alt mr-2"></i> Jakarta, Indonesia</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 Furniture. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta md:hidden">
+        <button class="btn-primary text-white font-bold py-4 px-6 rounded-full text-lg">
+            Pesan Sekarang
+        </button>
+    </div>
+
+    <!-- OrderOnline Embed Script -->
+    <script>
+        if (typeof xLogError != 'function') {
+            var xLogError = function (error) {
+                var req = new XMLHttpRequest();
+                var payload = JSON.stringify({ url: document.location.href, line: error.line, stack: error.stack });
+                var params = 'message=' + encodeURIComponent(error.name) + '&payload=' + encodeURIComponent(payload) + '&type=embed&level=error';
+                req.open('POST', 'https://api.orderonline.id/log', true);
+                req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                req.send(params);
+            };
+        }
+        try {
+            if (typeof xEmbedScript != 'function') {
+                var xEmbedScript = function () {
+                    !function(w, d, e, v, id, t, s) {
+                        if (d.getElementById(id)) return;
+                        t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                        s = d.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+                    }(window, document, 'script', 'https://cdn.orderonline.id/js/embed-v2-slim.min.js?v=8.0.4', 'oo-embed-js');
+                };
+            }
+            if (typeof xEmbedInit != 'function') {
+                var xEmbedInit = function (w, n) {
+                    if (w.ooe) return;
+                    n = w.ooe = function() { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments) };
+                    if (!w._ooe) w._ooe = n; n.push = n;n.loaded = !0;n.version = '8.0.4';n.queue = [];
+                };
+            }
+            xEmbedInit(window);
+            ooe('setup', 'redirect', 'https://vera.orderonline.id');
+            ooe('init', '5f1a7807a9bf807d6c63d963', '68852bd00211d664ca0cdd40', '68852bd00211d664ca0cdd41', 'oo-embed-form-door-wedge-stopper-4369', {"mode":"page","action":"Klik untuk pemesanan","title":"Form Pemesanan","triggerPixel":true,"triggerGtm":true});
+            if (!window.jQuery) {
+                !function(w, d, e, v, id, t, s) {
+                    if (d.getElementById(id)) return;
+                    t = d.createElement(e);t.async = !0;t.src = v;t.id = id;
+                    t.addEventListener('load', xEmbedScript);
+                    s = d.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+                }(window, document, 'script', 'https://cdn.orderonline.id/js/vendor/jquery.min.js', 'oo-embed-jquery');
+            } else {
+                xEmbedScript();
+            }
+        } catch (e) {
+            xLogError(e); throw e;
+        }
+    </script>
+
+    <script>
+        // Gallery functionality
+        function changeMainImage(src) {
+            document.getElementById('mainImage').src = src;
+        }
+        
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const closeLightbox = document.querySelector('.lightbox .close');
+        const galleryThumbnails = document.querySelectorAll('.gallery-thumbnail');
+        const testimonialMedia = document.querySelectorAll('.testimonial-media');
+        
+        function openLightbox(src) {
+            lightboxImage.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightboxFunc() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        galleryThumbnails.forEach(img => {
+            img.addEventListener('click', () => openLightbox(img.src));
+        });
+        
+        testimonialMedia.forEach(img => {
+            img.addEventListener('click', () => openLightbox(img.src));
+        });
+        
+        closeLightbox.addEventListener('click', closeLightboxFunc);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightboxFunc();
+        });
+        
+        // Carousel functionality
+        const carouselTrack = document.querySelector('.carousel-track');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const prevBtn = document.querySelector('.carousel-btn.prev');
+        const nextBtn = document.querySelector('.carousel-btn.next');
+        let currentIndex = 0;
+        let autoSlideInterval;
+        
+        function updateCarousel() {
+            carouselTrack.style.transform = `translateX(-${currentIndex * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                if (index === currentIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+        
+        function nextSlide() {
+            currentIndex = (currentIndex + 1) % slides.length;
+            updateCarousel();
+        }
+        
+        function prevSlide() {
+            currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+            updateCarousel();
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                currentIndex = index;
+                updateCarousel();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+        
+        // Pause auto-slide on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', stopAutoSlide);
+        carouselContainer.addEventListener('mouseleave', startAutoSlide);
+        
+        // Initialize carousel
+        startAutoSlide();
+        
+        // Social Proof Popup
+        const customerNames = ['cepu_27', 'saleh210', 'bimadzakiandra', 'ulfa winardi', 'imronsalim01', 'ade hendra', 'asepdarussalam', 'romimaulidi687'];
+        const customerCities = ['Bali', 'Surabaya', 'Bandung', 'Medan', 'Bekasi', 'Tangerang', 'Depok', 'Semarang'];
+        const socialProofPopup = document.getElementById('socialProofPopup');
+        const socialProofText = document.getElementById('socialProofText');
+        
+        function showSocialProof() {
+            const randomName = customerNames[Math.floor(Math.random() * customerNames.length)];
+            const randomCity = customerCities[Math.floor(Math.random() * customerCities.length)];
+            const randomMinutes = Math.floor(Math.random() * 15) + 1;
+            
+            socialProofText.textContent = `${randomName} dari ${randomCity} baru saja memesan Door Wedge Stopper`;
+            socialProofPopup.classList.remove('hidden');
+            
+            let hideTimeout;
+            
+            function hidePopup() {
+                socialProofPopup.classList.add('hidden');
+            }
+            
+            function resetHideTimeout() {
+                clearTimeout(hideTimeout);
+                hideTimeout = setTimeout(hidePopup, 3000);
+            }
+            
+            resetHideTimeout();
+            
+            socialProofPopup.addEventListener('mouseenter', () => {
+                clearTimeout(hideTimeout);
+            });
+            
+            socialProofPopup.addEventListener('mouseleave', resetHideTimeout);
+        }
+        
+        // Show popup every 8 seconds
+        setInterval(showSocialProof, 8000);
+        
+        // Show initial popup after 2 seconds
+        setTimeout(showSocialProof, 2000);
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
